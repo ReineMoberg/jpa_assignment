@@ -1,4 +1,4 @@
-package se.lexicon.reinemoberg.jpa_assignment.jpa_assignment;
+package se.lexicon.reinemoberg.jpa_assignment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

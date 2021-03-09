@@ -1,4 +1,4 @@
-package se.lexicon.reinemoberg.jpa_assignment.jpa_assignment;
+package se.lexicon.reinemoberg.jpa_assignment;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
