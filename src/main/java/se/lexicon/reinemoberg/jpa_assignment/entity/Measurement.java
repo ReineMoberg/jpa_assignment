@@ -22,7 +22,9 @@ public enum Measurement {
 
     @Override
     public String toString() {
-        return " " + valueString + " ";
+        return "Measurement{" +
+                "valueString='" + valueString + '\'' +
+                '}';
     }
 }
 

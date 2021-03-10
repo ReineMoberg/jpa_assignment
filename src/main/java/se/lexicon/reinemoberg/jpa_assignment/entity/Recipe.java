@@ -58,6 +58,9 @@ public class Recipe {
     }
 
     public void addRecipeIngredient(RecipeIngredient recipeIngredient) {
+        if (recipeIngredient == null) {
+            throw new IllegalArgumentException("recipeIngredient is null");
+        }
         if (recipeIngredientList == null) {
             recipeIngredientList = new ArrayList<>();
         }
@@ -66,12 +69,36 @@ public class Recipe {
     }
 
     public void removeRecipeIngredient(RecipeIngredient recipeIngredient) {
-        if (recipeIngredient == null) throw new IllegalArgumentException("recipeIngredient is null");
+        if (recipeIngredient == null) {
+            throw new IllegalArgumentException("recipeIngredient is null");
+        }
         if (recipeIngredientList == null) {
             recipeIngredientList = new ArrayList<>();
         }
         recipeIngredientList.remove(recipeIngredient);
         recipeIngredient.setRecipe(null);
+    }
+
+    public void addRecipeCategory(RecipeCategory recipeCategory) {
+        if (recipeCategory == null) {
+            throw new IllegalArgumentException("recipeCategory is null");
+        }
+        if (categoryList == null) {
+            categoryList = new ArrayList<>();
+        }
+        categoryList.add(recipeCategory);
+        recipeCategory.getRecipeList().add(this);
+    }
+
+    public void removeRecipeCategory(RecipeCategory recipeCategory) {
+        if (recipeCategory == null) {
+            throw new IllegalArgumentException("recipeCategory is null");
+        }
+        if (categoryList == null) {
+            categoryList = new ArrayList<>();
+        }
+        recipeCategory.getRecipeList().remove(this);
+        categoryList.remove(recipeCategory);
     }
 
     public void setId(int id) {
