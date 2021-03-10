@@ -1,6 +1,7 @@
 package se.lexicon.reinemoberg.jpa_assignment.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -54,6 +55,23 @@ public class Recipe {
 
     public int getId() {
         return id;
+    }
+
+    public void addRecipeIngredient(RecipeIngredient recipeIngredient) {
+        if (recipeIngredientList == null) {
+            recipeIngredientList = new ArrayList<>();
+        }
+        recipeIngredientList.add(recipeIngredient);
+        recipeIngredient.setRecipe(this);
+    }
+
+    public void removeRecipeIngredient(RecipeIngredient recipeIngredient) {
+        if (recipeIngredient == null) throw new IllegalArgumentException("recipeIngredient is null");
+        if (recipeIngredientList == null) {
+            recipeIngredientList = new ArrayList<>();
+        }
+        recipeIngredientList.remove(recipeIngredient);
+        recipeIngredient.setRecipe(null);
     }
 
     public void setId(int id) {
