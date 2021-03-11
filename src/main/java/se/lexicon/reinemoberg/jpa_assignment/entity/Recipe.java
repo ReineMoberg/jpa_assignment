@@ -86,8 +86,10 @@ public class Recipe {
         if (categoryList == null) {
             categoryList = new ArrayList<>();
         }
-        categoryList.add(recipeCategory);
-        recipeCategory.getRecipeList().add(this);
+        if (!categoryList.contains(recipeCategory)) {
+            categoryList.add(recipeCategory);
+            recipeCategory.getRecipeList().add(this);
+        }
     }
 
     public void removeRecipeCategory(RecipeCategory recipeCategory) {
@@ -97,8 +99,10 @@ public class Recipe {
         if (categoryList == null) {
             categoryList = new ArrayList<>();
         }
-        recipeCategory.getRecipeList().remove(this);
-        categoryList.remove(recipeCategory);
+        if (categoryList.contains(recipeCategory)) {
+            recipeCategory.getRecipeList().remove(this);
+            categoryList.remove(recipeCategory);
+        }
     }
 
     public void setId(int id) {
