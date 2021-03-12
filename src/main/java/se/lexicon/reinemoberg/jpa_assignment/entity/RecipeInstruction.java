@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
-import java.util.PrimitiveIterator;
+import java.util.UUID;
 
 @Entity
 public class RecipeInstruction {
@@ -17,7 +17,7 @@ public class RecipeInstruction {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Type(type = "uuid-char")
-    private String id;
+    private UUID id;
 
     @Column(length = 1500)
     private String instructions;
@@ -29,16 +29,12 @@ public class RecipeInstruction {
         this.instructions = instructions;
     }
 
-    public RecipeInstruction(String id, String instructions) {
+    public RecipeInstruction(UUID id, String instructions) {
         this.id = id;
         this.instructions = instructions;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -66,7 +62,7 @@ public class RecipeInstruction {
     @Override
     public String toString() {
         return "RecipeInstruction{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", instructions='" + instructions + '\'' +
                 '}';
     }

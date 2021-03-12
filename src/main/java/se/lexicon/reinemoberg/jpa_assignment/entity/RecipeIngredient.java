@@ -5,6 +5,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 public class RecipeIngredient {
@@ -13,14 +14,14 @@ public class RecipeIngredient {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Type(type = "uuid-char")
-    private String id;
+    private UUID id;
 
     @ManyToOne(fetch = FetchType.EAGER,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 
-    @Column(nullable = false, columnDefinition = "Decimal(3,2) default 0")
+    @Column(nullable = false, columnDefinition = "Decimal(5,2) default 0")
     private double amount;
 
     @Enumerated(EnumType.STRING)
@@ -39,14 +40,21 @@ public class RecipeIngredient {
         this.measurement = measurement;
     }
 
-    public RecipeIngredient(String id, Ingredient ingredient, double amount, Measurement measurement) {
+    public RecipeIngredient(Ingredient ingredient, double amount, Measurement measurement, Recipe recipe) {
+        this.ingredient = ingredient;
+        this.amount = amount;
+        this.measurement = measurement;
+        this.recipe = recipe;
+    }
+
+    public RecipeIngredient(UUID id, Ingredient ingredient, double amount, Measurement measurement) {
         this.id = id;
         this.ingredient = ingredient;
         this.amount = amount;
         this.measurement = measurement;
     }
 
-    public RecipeIngredient(String id, Ingredient ingredient, double amount, Measurement measurement, Recipe recipe) {
+    public RecipeIngredient(UUID id, Ingredient ingredient, double amount, Measurement measurement, Recipe recipe) {
         this.id = id;
         this.ingredient = ingredient;
         this.amount = amount;
@@ -54,11 +62,11 @@ public class RecipeIngredient {
         this.recipe = recipe;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -110,7 +118,7 @@ public class RecipeIngredient {
     @Override
     public String toString() {
         return "RecipeIngredient{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", ingredient=" + ingredient +
                 ", amount=" + amount +
                 ", measurement=" + measurement +

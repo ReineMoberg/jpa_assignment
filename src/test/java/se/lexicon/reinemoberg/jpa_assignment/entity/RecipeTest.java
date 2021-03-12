@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class RecipeTest {
 
@@ -14,7 +15,7 @@ public class RecipeTest {
 
     @BeforeEach
     public void setup(){
-        RecipeInstruction recipeInstruction1 = new RecipeInstruction("1","Bake it");
+        RecipeInstruction recipeInstruction1 = new RecipeInstruction(UUID.fromString("1"),"Bake it");
         testRecipe = new Recipe();
         testRecipe.setId(1);
         testRecipe.setName("Apple Pie");
@@ -33,7 +34,7 @@ public class RecipeTest {
     @DisplayName("Add recipe ingredient")
     public void testAddRecipeIngredient() {
         Ingredient ingredient1 = new Ingredient(1, "Sugar");
-        RecipeIngredient recipeIngredient1 = new RecipeIngredient("1", ingredient1, 2, Measurement.DL, testRecipe);
+        RecipeIngredient recipeIngredient1 = new RecipeIngredient(UUID.fromString("1"), ingredient1, 2, Measurement.DL, testRecipe);
 
         testRecipe.addRecipeIngredient(recipeIngredient1);
         Assertions.assertTrue(testRecipe.getRecipeIngredientList().contains(recipeIngredient1));
@@ -43,7 +44,7 @@ public class RecipeTest {
     @DisplayName("Remove recipe ingredient")
     public void testRemoveRecipeIngredient() {
         Ingredient ingredient1 = new Ingredient(1, "Sugar");
-        RecipeIngredient recipeIngredient1 = new RecipeIngredient("1", ingredient1, 2, Measurement.DL, testRecipe);
+        RecipeIngredient recipeIngredient1 = new RecipeIngredient(UUID.fromString("1"), ingredient1, 2, Measurement.DL, testRecipe);
         List<RecipeIngredient> recipeIngredientList1 = new ArrayList<>();
         recipeIngredientList1.add(recipeIngredient1);
 
@@ -67,7 +68,7 @@ public class RecipeTest {
         recipeCategory1.getRecipeList().add(testRecipe);
 
         Ingredient ingredient1 = new Ingredient(1, "Sugar");
-        RecipeIngredient recipeIngredient1 = new RecipeIngredient("1", ingredient1, 2, Measurement.DL, testRecipe);
+        RecipeIngredient recipeIngredient1 = new RecipeIngredient(UUID.fromString("1"), ingredient1, 2, Measurement.DL, testRecipe);
         List<RecipeIngredient> recipeIngredientList1 = new ArrayList<>();
         recipeIngredientList1.add(recipeIngredient1);
 
@@ -88,7 +89,7 @@ public class RecipeTest {
         recipeCategoryList1.add(recipeCategory1);
 
         Ingredient ingredient1 = new Ingredient(1, "Sugar");
-        RecipeIngredient recipeIngredient1 = new RecipeIngredient("1", ingredient1, 2, Measurement.DL, testRecipe);
+        RecipeIngredient recipeIngredient1 = new RecipeIngredient(UUID.fromString("1"), ingredient1, 2, Measurement.DL, testRecipe);
         List<RecipeIngredient> recipeIngredientList1 = new ArrayList<>();
         recipeIngredientList1.add(recipeIngredient1);
 

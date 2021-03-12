@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class RecipeCategoryTest {
 
@@ -31,7 +32,7 @@ public class RecipeCategoryTest {
     @Test
     @DisplayName("Add recipe")
     public void testAddRecipe() {
-        RecipeInstruction recipeInstruction1 = new RecipeInstruction("1","Grill it");
+        RecipeInstruction recipeInstruction1 = new RecipeInstruction(UUID.fromString("1"),"Grill it");
         Recipe recipe1 = new Recipe(2, "Grilled chicken", new ArrayList<>(), recipeInstruction1, new ArrayList<>());
 
         testRecipeCategory.addRecipe(recipe1);
@@ -43,7 +44,7 @@ public class RecipeCategoryTest {
     @Test
     @DisplayName("Remove recipe")
     public void testRemoveRecipe() {
-        RecipeInstruction recipeInstruction1 = new RecipeInstruction("1","Grill it");
+        RecipeInstruction recipeInstruction1 = new RecipeInstruction(UUID.fromString("1"),"Grill it");
         Recipe recipe1 = new Recipe(2, "Grilled chicken", new ArrayList<>(), recipeInstruction1, new ArrayList<>());
         List<Recipe> recipeList1 = new ArrayList<>();
         recipeList1.add(recipe1);
