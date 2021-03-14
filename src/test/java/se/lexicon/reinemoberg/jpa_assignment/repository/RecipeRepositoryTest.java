@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import se.lexicon.reinemoberg.jpa_assignment.entity.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @DataJpaTest
 public class RecipeRepositoryTest {
@@ -113,5 +111,27 @@ public class RecipeRepositoryTest {
         Assertions.assertEquals(3, foundRecipeList.get(2).getId());
         Assertions.assertEquals("Brown rice porridge", foundRecipeList.get(2).getName());
         //System.out.println("Found recipe list: " + foundRecipeList);
+    }
+
+    @Test
+    public void testFindByCategory() {
+        List<Recipe> foundRecipeList = testObject.findByCategory("Fish");
+        Assertions.assertEquals(1, foundRecipeList.size());
+        Assertions.assertEquals("Fried herring", foundRecipeList.get(0).getName());
+        Assertions.assertEquals(1, foundRecipeList.get(0).getCategoryList().size());
+        Assertions.assertEquals("Fish", foundRecipeList.get(0).getCategoryList().get(0).getCategory());
+        //System.out.println("Found recipe list: " + foundRecipeList);
+    }
+
+    @Test
+    public void testFindByCategories() {
+        Collection<String> categories = new HashSet<>();
+        categories.add("Baking");
+        categories.add("Rice");
+        categories.add("Does not exist");
+        List<Recipe> foundRecipeList = testObject.findByCategories(categories);
+        Assertions.assertEquals(2, foundRecipeList.size());
+        Assertions.assertEquals("Finnish croissants", foundRecipeList.get(0).getName());
+        Assertions.assertEquals("Brown rice porridge", foundRecipeList.get(1).getName());
     }
 }
