@@ -34,6 +34,10 @@ public class RecipeInstruction {
         this.instructions = instructions;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
     public void setId(UUID id) {
         this.id = id;
     }
